@@ -10,6 +10,7 @@ import Logo3 from '../assets/logo/logo-3.png';
 import Logo4 from '../assets/logo/logo-4.png';
 import Logo5 from '../assets/logo/logo-5.png';
 import NewArrivals from './NewArrivals';
+import Footer from './Footer';
 const Navbar = () => {
     return (
         <nav className="mt-12 w-[80%] ">
@@ -54,9 +55,8 @@ const Navbar = () => {
                 <img src={Logo5} alt="logo" />
             </div>
             <NewArrivals/>
-            <div className='flex items-center justify-center mt-6'>
-                <button className='w-[207px] h-[56px] bg-black text-white rounded-lg hover:bg-white hover:text-black font-[poppins]'>View All</button>
-            </div>
+           
+            <Footer/>
         </nav>
     );
 }
