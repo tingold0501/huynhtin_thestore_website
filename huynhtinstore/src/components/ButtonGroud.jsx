@@ -43,12 +43,11 @@ const ButtonGroud = () => {
             .then(function (response) {
                 console.log(id);
                 setProducts(response.data);
-                setID(id);
-                console.log(response.data, id);
-                if (products.length > 0) {
-                    toast.success('🦄 Đã tìm thấy sản phẩm!', {
+                console.log(response, id);
+                if(response.data.check == true){
+                    toast.success(response.data.msg, {
                         position: "top-right",
-                        autoClose: 2000,
+                        autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -57,10 +56,10 @@ const ButtonGroud = () => {
                         theme: "light",
                     });
                 }
-                else if (products.length <= 0) {
-                    toast.warning('🦄 Không có sản phẩm nào với loại này!', {
+                else if(response.data.check == false){
+                    toast.error(response.data.msg, {
                         position: "top-right",
-                        autoClose: 2000,
+                        autoClose: 5000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,

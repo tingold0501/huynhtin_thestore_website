@@ -3,7 +3,7 @@ import StarIcon from '@mui/icons-material/Star';
 
 const ProductItem = ({id, name, image, price, description}) => {
     return (
-        <div key={id} className='shadow cursor-pointer hover:translate-y-5 rounded-lg m-4 flex items-center justify-center'>
+        <div key={id} className='shadow cursor-pointer transition duration-300 delay-150 hover:delay-300 rounded-lg m-4 flex items-center justify-center'>
             <div className='w-[90%]'>
                 <img className='h-[300px] w-full mt-4 rounded-xl' src={image} alt="" />
                 <div className='flex mt-4'>
