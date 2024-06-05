@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image1 from '../assets/images/image 2 28.png';
 import Image2 from '../assets/images/image 227.png';
 import Image3 from '../assets/images/image-2.png';
@@ -10,7 +10,9 @@ import Logo4 from '../assets/logo/logo-4.png';
 import Logo5 from '../assets/logo/logo-5.png';
 import NewArrivals from './NewArrivals';
 import Footer from './Footer';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
+   
     return (
         <nav className="mt-12 w-[80%] ">
             <ul className='flex items-center justify-between font-[regular]'>
@@ -19,7 +21,9 @@ const Navbar = () => {
                 <li className='text-[16px] text-[#484848] hover:text-gray-500 hover:underline hover:underline-offset-8 cursor-pointer'>Deals</li>
                 <li className='text-[16px] text-[#484848] hover:text-gray-500 hover:underline hover:underline-offset-8 cursor-pointer'>New Arrivals</li>
                 <li className='text-[16px] text-[#484848] hover:text-gray-500 hover:underline hover:underline-offset-8 cursor-pointer'>Packages</li>
-                <li className='text-[16px] text-[#484848] hover:bg-[#000000] rounded-lg hover:text-white w-[152px] h-[56px]'><button className='w-full  h-full'>Sign In</button></li>
+                <Link to="/login">
+                    <li className='text-[16px] text-[#484848] hover:bg-[#000000] rounded-lg hover:text-white w-[152px] h-[56px]'><button className='w-full  h-full'>Sign In</button></li>
+                </Link>
                 <li className='text-[16px] text-[#484848] bg-slate-500 hover:bg-[#000000] rounded-lg hover:text-white w-[152px] h-[56px]'><button className='w-full  h-full'>Sign Up</button></li>
             </ul>
             <div className='w-full flex  mt-[10%] '>
@@ -37,7 +41,7 @@ const Navbar = () => {
                             <p className='text-[20px] font-[Poppins] text-[#484848]'>NEW COLLECTION</p>
                             <button className=' w-[207px] h-[56px] bg-[#000000] rounded-xl text-white mt-8 mb-5 hover:bg-white hover:text-black'>SHOP NOW</button>
                         </div>
-                        <img className='w-full 'src={Image3} alt="logo" />
+                        <img className='w-full ' src={Image3} alt="logo" />
                     </div>
                 </div>
                 <div className=' w-full  '>
@@ -53,9 +57,9 @@ const Navbar = () => {
                 <img src={Logo4} alt="logo" />
                 <img src={Logo5} alt="logo" />
             </div>
-            <NewArrivals/>
-           
-            <Footer/>
+            <NewArrivals />
+
+            <Footer />
         </nav>
     );
 }

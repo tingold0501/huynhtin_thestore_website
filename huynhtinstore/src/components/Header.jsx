@@ -3,9 +3,8 @@ import Navbar from './Navbar';
 
 const Header = () => {
     return (
-        <div className='  flex items-center justify-center'>
+        <div className='flex items-center justify-center'>
             <Navbar/>
-            
         </div>
     );
 }

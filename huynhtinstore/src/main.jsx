@@ -8,18 +8,26 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home.jsx';
 import NewArrivals from './components/NewArrivals.jsx';
+import Login from './pages/Login.jsx';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/products/:id",
-    element: <NewArrivals/>,
+    element: <NewArrivals />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GoogleOAuthProvider clientId="350862611618-57ac5t095fves3uqjkh9h30dgto60dge.apps.googleusercontent.com">;
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
   </React.StrictMode>,
 )
