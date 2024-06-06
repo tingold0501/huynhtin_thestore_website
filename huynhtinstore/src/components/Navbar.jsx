@@ -12,7 +12,6 @@ import NewArrivals from './NewArrivals';
 import Footer from './Footer';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
-   
     return (
         <nav className="mt-12 w-[80%] ">
             <ul className='flex items-center justify-between font-[regular]'>
@@ -21,6 +20,11 @@ const Navbar = () => {
                 <li className='text-[16px] text-[#484848] hover:text-gray-500 hover:underline hover:underline-offset-8 cursor-pointer'>Deals</li>
                 <li className='text-[16px] text-[#484848] hover:text-gray-500 hover:underline hover:underline-offset-8 cursor-pointer'>New Arrivals</li>
                 <li className='text-[16px] text-[#484848] hover:text-gray-500 hover:underline hover:underline-offset-8 cursor-pointer'>Packages</li>
+                {/* {!token && (
+                     <Link to="">
+                     <li className='text-[16px] text-[#484848] hover:bg-[#000000] rounded-lg hover:text-white w-[152px] h-[56px]'><button className='w-full  h-full'>Sign Out</button></li>
+                 </Link>
+                )} */}
                 <Link to="/login">
                     <li className='text-[16px] text-[#484848] hover:bg-[#000000] rounded-lg hover:text-white w-[152px] h-[56px]'><button className='w-full  h-full'>Sign In</button></li>
                 </Link>

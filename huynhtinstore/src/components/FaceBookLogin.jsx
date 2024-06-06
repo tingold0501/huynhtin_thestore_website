@@ -3,12 +3,9 @@ import { LoginSocialFacebook, } from 'reactjs-social-login';
 import { FacebookLoginButton, } from 'react-social-login-buttons';
 const FaceBookLogin = () => {
     const [profile, setProfile] = useState(null);
-    if (!profile){
-        window.location.replace('/');
-    }
+    
     return (
         <div>
-            {!profile ?
                 <LoginSocialFacebook
                     appId="7954767284575803"
                     onResolve={(response) => {
@@ -21,13 +18,10 @@ const FaceBookLogin = () => {
                 >
                     <FacebookLoginButton />
                 </LoginSocialFacebook>
-                : ""}
-            {profile ?
-                <div>
+                {/* <div>
                     <p>{profile.name}</p>
                     <img src={profile.picture.data.url} alt="" />
-                </div>
-                : ""}
+                </div> */}
         </div>
     );
 }
