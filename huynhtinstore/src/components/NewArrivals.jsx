@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import ProductItem from './ProductItem';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -65,10 +64,11 @@ const NewArrivals = () => {
         axios({
             method: 'get',
             url: 'http://localhost/api/getProductsLatest',
+            responseType: 'JSON',
         })
             .then(function (response) {
-                setProducts(response.data);
-                console.log(response.data);
+                setProducts(response);
+                console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
@@ -78,7 +78,7 @@ const NewArrivals = () => {
             url: 'http://localhost/api/getallproductTypes',
         })
             .then(function (response) {
-                setProductType(response.data);
+                setProductType(response);
                 console.log(response.data);
             })
             .catch(function (error) {
@@ -109,7 +109,7 @@ const NewArrivals = () => {
                 </div>
             </div>
             <div className='grid grid-cols-3  items-center justify-center'>
-                {products.length > 0 && products.map((product) => (
+                {products.length > 0 && products.map((product, key) => (
                     <ProductItem key={product.id} id={product.id} name={product.name} image={product.image} price={product.price} description={product.description} />
                 ))}
             </div>
@@ -122,7 +122,6 @@ const NewArrivals = () => {
                     <button onClick={handleGetallProducts} className='w-[207px] h-[56px] bg-black text-white rounded-lg hover:bg-white hover:text-black font-[poppins]'>View All</button>
                 </div>
             )}
-
         </div>
     );
 }
