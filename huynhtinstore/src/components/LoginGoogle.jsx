@@ -4,6 +4,8 @@ const LoginGoogle = () => {
     return (
         <div>
             <GoogleLogin
+            width={280}
+            size='large'
                 onSuccess={credentialResponse => {
                     console.log(credentialResponse);
                 }}
