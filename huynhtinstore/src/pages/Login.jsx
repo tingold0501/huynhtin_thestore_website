@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import  {React, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BannerLogin from '../assets/images/bannerLogin.png';
 import LoginGoogle from '../components/LoginGoogle';
+import { useDispatch } from 'react-redux';
+import { login } from '../reduxtoolkit/slices/authSlices.js';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const urlApi = 'http://localhost:8080/api/v1/auth/login';
+    const dispacth = useDispatch();
+
+    const handleLogin = () => {
+        dispacth(login({ email, password }));
+    };
     <ToastContainer
         position="top-right"
         autoClose={1000}
@@ -19,24 +25,8 @@ const Login = () => {
         pauseOnHover
         theme="light"
     />
-    const handleSubmit = (e) => {
-        console.log("Clicked");
-        if (email === "" || password === "") {
-            toast.error('🦄 Bạn Chưa Nhập Email Hoặc Mật Khẩu!', {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
-        }
-        else{
-
-        }
-    }
+   
+    
     return (
         <div className='h-screen flex justify-center items-center '>
             <ToastContainer/>
@@ -63,7 +53,7 @@ const Login = () => {
                         <input onChange={(e) => setPassword(e.target.value)} placeholder='Password' type="password" class=" mt-10 border-0 border-b border-gray-300 focus:outline-none focus:border-blue-500" />
                     </div>
                     <div className='flex flex-col items-center'>
-                        <button onClick={handleSubmit} className='w-[575px] h-[60px] rounded-xl bg-black text-white hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'>Sign In</button>
+                        <button onClick={handleLogin} className='w-[575px] h-[60px] rounded-xl bg-black text-white hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'>Sign In</button>
                         <button className='w-[575px] h-[60px] mt-4 rounded-xl border border-blue-500 text-blue-500 hover:bg-black hover:text-white hover:border-none'>Register Now</button>
                     </div>
                     <div className='w-full flex justify-end mt-4'>
