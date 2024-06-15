@@ -1,10 +1,11 @@
-import  {React, useState } from 'react';
+import { React, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BannerLogin from '../assets/images/bannerLogin.png';
 import LoginGoogle from '../components/LoginGoogle';
 import { useDispatch } from 'react-redux';
 import { login } from '../reduxtoolkit/slices/authSlices.js';
+import axios from 'axios';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,6 +13,22 @@ const Login = () => {
 
     const handleLogin = () => {
         dispacth(login({ email, password }));
+        // if (email === "" || password === "") {
+        //     toast.error("Please enter email and password");
+        // } 
+        // else {
+        //     axios({
+        //         method: 'post',
+        //         url: 'http://localhost/api/login',
+        //         data: {
+        //             email: email,
+        //             password: password,
+        //         }
+        //     }).then(function (response) {
+        //         console.log(response);
+        //         toast.success("Login success");
+        //     })
+        // }
     };
     <ToastContainer
         position="top-right"
@@ -25,20 +42,22 @@ const Login = () => {
         pauseOnHover
         theme="light"
     />
-   
-    
+
+
     return (
         <div className='h-screen flex justify-center items-center '>
-            <ToastContainer/>
+            <ToastContainer />
             <div className=' w-2/3  flex items-center justify-between border border-gray-300 rounded-3xl'>
                 <div className='w-full'>
                     <img src={BannerLogin} alt="" />
                 </div>
                 <div className='ml-10  mr-10 h-3/4  flex flex-col justify-between'>
-                    <p className='text-[#484848] text-[66px]'>GT-Store</p>
+                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <p className='text-[#484848] text-[66px]'>GT-Store </p>
                     <p className='text-[#000000] text-[30px]'>Sign In To GT-Store</p>
                     <div className='w-full flex justify-between mt-6'>
-                        <LoginGoogle/>
+                        <LoginGoogle />
                         <LoginGoogle />
                     </div>
                     <div className='w-full flex items-center justify-center mt-8 mb-8'>
