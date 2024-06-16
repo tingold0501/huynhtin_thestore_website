@@ -52,8 +52,7 @@ const Login = () => {
                     <img src={BannerLogin} alt="" />
                 </div>
                 <div className='ml-10  mr-10 h-3/4  flex flex-col justify-between'>
-                    @csrf
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    
                     <p className='text-[#484848] text-[66px]'>GT-Store </p>
                     <p className='text-[#000000] text-[30px]'>Sign In To GT-Store</p>
                     <div className='w-full flex justify-between mt-6'>
