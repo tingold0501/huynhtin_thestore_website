@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
+    const token = localStorage.getItem("token");
 
+    const logout = () => {
+        localStorage.removeItem("token");
+        window.location.reload();
+    }
     return (
         <header className="bg-gray-800">
             <nav className="container mx-auto px-6 py-3">
@@ -17,12 +22,19 @@ const Navbar = () => {
                             <li><a href="#" className="text-white">About</a></li>
                             <li><a href="#" className="text-white">Services</a></li>
                             <li><a href="#" className="text-white">Contact</a></li>
-                            <Link to={"/login"}>
-                                <li><a href="#" className="text-white">Sign In</a></li>
-                            </Link>
-                            <Link to={"/register"}>
-                                <li><a href="#" className="text-white">Sign Up</a></li>
-                            </Link>
+                            {!token ? (
+                                <div className='flex items-center space-x-8'>
+                                    <Link to={"/login"}>
+                                        <li><a href="#" className="text-white">Sign In</a></li>
+                                    </Link>
+                                    <Link to={"/register"}>
+                                        <li><a href="#" className="text-white">Sign Up</a></li>
+                                    </Link>
+                                </div>
+                            ) : (
+                                <li><a onClick={logout} href="#" className="text-white">Sign Out</a></li>
+                            )}
+
                         </ul>
                     </div>
                     <div className="md:hidden">

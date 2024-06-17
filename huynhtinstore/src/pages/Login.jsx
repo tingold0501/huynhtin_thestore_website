@@ -1,49 +1,39 @@
 import { React, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import BannerLogin from '../assets/images/bannerLogin.png';
 import LoginGoogle from '../components/LoginGoogle';
-import { useDispatch } from 'react-redux';
-import { login } from '../reduxtoolkit/slices/authSlices.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const dispacth = useDispatch();
 
     const handleLogin = () => {
-        // dispacth(login({ email, password }));
         if (email === "" || password === "") {
-            toast.error("Please enter email and password");
-        } 
-        else {
-            axios({
-                method: 'post',
-                url: 'http://localhost/api/login',
-                data: {
+            toast.error("Please enter your email and password");
+        } else {
+            axios
+                .post("http://localhost/api/login", {
                     email: email,
                     password: password,
-                }
-            }).then(function (response) {
-                console.log(response);
-                toast.success("Login success");
-            })
+                })
+                .then((response) => {
+                    if (response.data.check == true) {
+                        toast.success(response.data.msg);
+                        setTimeout(() => {
+                            window.location.replace("/");
+                            localStorage.setItem("token", response.data.token);
+                        },2000)
+
+                    } else {
+                        toast.error(response.data.msg);
+                    }
+                })
+                .catch((error) => {
+                    toast.error(error.response.data.message);
+                });
         }
     };
-    <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-    />
-
-
     return (
         <div className='h-screen flex justify-center items-center '>
             <ToastContainer />

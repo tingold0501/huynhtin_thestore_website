@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import Notification from "../../components/Notification";
 
 export const login = createAsyncThunk('login', async (data) => {
     const response = await fetch('http://localhost/api/login', {
@@ -9,6 +9,9 @@ export const login = createAsyncThunk('login', async (data) => {
         },
         body: JSON.stringify(data)
     });
+    if (response.data.check == true) {
+        window.location.replace('/');
+    }
     return response.json();
 });
 
@@ -30,6 +33,7 @@ export const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.currentUser = action.payload;
+                Notification({ type: 'success', message: 'Login success!' });
             })
             .addCase(login.rejected, (state, action) => {
                 state.status = 'failed';

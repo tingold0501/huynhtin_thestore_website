@@ -1,87 +1,103 @@
-import React from 'react';
-
+import { React, useEffect, useState } from 'react';
+import BannerLogin from '../assets/images/bannerLogin.png';
+import LoginGoogle from '../components/LoginGoogle';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import Select from '../components/Select';
 const SignUp = () => {
+    const url = 'http://localhost/api/';
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState("");
+    // const [roles, setRole] = useState([]);
+    // const [idRole, setRoleId] = useState(0);
+
+    const handleRegister = () => {
+        if (name == "" || email == "" || password == "" || phone == "") {
+            toast.error("Please enter your name, email, password and role");
+        } else {
+            axios
+                .post("http://localhost/api/register", {
+                    name: name,
+                    email: email,
+                    password: password,
+                    phone: phone,
+                    role_id: 3
+                })
+                .then((response) => {
+                    if (response.data.check == true) {
+                        toast.success(response.data.msg);
+                        setTimeout(() => {
+                            window.location.replace("/login");
+                        }, 2000)
+                    } else {
+                        toast.error(response.data.msg);
+                    }
+                })
+                .catch((error) => {
+                    toast.error(error.response.data.message);
+                });
+        }
+    };
+    // useEffect(() => {
+    //     axios({
+    //         method: 'get',
+    //         url: url + 'index',
+    //     })
+    //         .then(function (response) {
+    //             setRole(response.data);
+    //             console.log(response.data);
+    //         });
+    // }, []);
+
     return (
-        <section className="bg-white dark:bg-gray-900">
-            <div className="flex justify-center min-h-screen">
-                <div 
-                    className="hidden bg-cover lg:block lg:w-2/5" 
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1494621930069-4fd4b2e24a11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80')" }}
-                ></div>
-
-                <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
-                    <div className="w-full">
-                        <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
-                            GT-Store
-                        </h1>
-
-                        <p className="mt-4 text-gray-500 dark:text-gray-400">
-                            Sign Up To GT-Store
-                        </p>
-
-                        <div className="mt-6">
-                            <h1 className="text-gray-500 dark:text-gray-300">Select type of account</h1>
-
-                            <div className="mt-3 md:flex md:items-center md:-mx-2">
-                                <button className="flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-md md:w-auto md:mx-2 focus:outline-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                    <span className="mx-2">client</span>
-                                </button>
-
-                                <button className="flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-md md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    <span className="mx-2">worker</span>
-                                </button>
-                            </div>
+        <div className='h-screen flex justify-center items-center '>
+            <ToastContainer />
+            <div className=' w-2/3  flex items-center justify-between border border-gray-300 rounded-3xl'>
+                <div className='w-full'>
+                    <img src={BannerLogin} alt="" />
+                </div>
+                <div className='ml-10  mr-10 h-3/4  flex flex-col justify-between'>
+                    <p className='text-[#484848] text-[66px]'>GT-Store </p>
+                    <p className='text-[#000000] text-[30px]'>Sign Up To GT-Store</p>
+                    <div className='w-full flex justify-between mt-6'>
+                        <LoginGoogle />
+                        <LoginGoogle />
+                    </div>
+                    <div className='w-full flex items-center justify-center mt-8 mb-8'>
+                        <div className="flex items-center">
+                            <div class="bg-black h-0.5 w-5 mr-2"></div>
+                            <span>Or</span>
+                            <div className="bg-black h-0.5 w-5 ml-2"></div>
                         </div>
+                    </div>
+                    <div className='flex flex-col mb-6'>
+                        <input onChange={(e) => setName(e.target.value)} placeholder='Name' type="text" class="border-0 border-b  border-gray-300 focus:outline-none focus:border-blue-500" />
+                        <input onChange={(e) => setEmail(e.target.value)} placeholder='Email' type="email" class="mt-10 border-0 border-b  border-gray-300 focus:outline-none focus:border-blue-500" />
+                        <input onChange={(e) => setPassword(e.target.value)} placeholder='Password' type="password" class=" mt-10 border-0 border-b border-gray-300 focus:outline-none focus:border-blue-500" />
+                        <input onChange={(e) => setPhone(e.target.value)} placeholder='Phone' type="text" class=" mt-10 border-0 border-b border-gray-300 focus:outline-none focus:border-blue-500" />
+                        
+                        {/* <select onChange={(e) => setRoleId(e.target.value)} value={idRole} className='mt-10 border-0 border-b border-gray-300 focus:outline-none focus:border-blue-500'>
+                            {roles.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                    {item.name}
+                                </option>
+                            ))}
+                        </select> */}
 
-                        <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">First Name</label>
-                                <input type="text" placeholder="John" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Last name</label>
-                                <input type="text" placeholder="Snow" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Phone number</label>
-                                <input type="text" placeholder="XXX-XX-XXXX-XXX" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email address</label>
-                                <input type="email" placeholder="johnsnow@example.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Confirm password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                <span>Sign Up</span>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                                </svg>
-                            </button>
-                        </form>
+                    </div>
+                    <div className='flex flex-col items-center'>
+                        {/* <button className='w-[575px] h-[60px] rounded-xl bg-black text-white hover:bg-white hover:text-blue-500 hover:border hover:border-blue-500'>Sign In</button> */}
+                        <button onClick={handleRegister} className='w-[575px] h-[60px] mt-4 rounded-xl border border-blue-500 text-blue-500 hover:bg-black hover:text-white hover:border-none'>Register Now</button>
+                    </div>
+                    <div className='w-full flex justify-end mt-4'>
+                        <a className=' text-blue-500' href="">Already Sign In?</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 
