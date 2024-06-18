@@ -11,8 +11,6 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
-    // const [roles, setRole] = useState([]);
-    // const [idRole, setRoleId] = useState(0);
 
     const handleRegister = () => {
         if (name == "" || email == "" || password == "" || phone == "") {
@@ -41,16 +39,7 @@ const SignUp = () => {
                 });
         }
     };
-    // useEffect(() => {
-    //     axios({
-    //         method: 'get',
-    //         url: url + 'index',
-    //     })
-    //         .then(function (response) {
-    //             setRole(response.data);
-    //             console.log(response.data);
-    //         });
-    // }, []);
+   
 
     return (
         <div className='h-screen flex justify-center items-center '>

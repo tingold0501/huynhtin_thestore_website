@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.stroke {
+    color: white;
+    /* set the inside color */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    /* set the stroke color */
+}
