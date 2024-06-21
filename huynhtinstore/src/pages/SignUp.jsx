@@ -4,7 +4,6 @@ import LoginGoogle from '../components/LoginGoogle';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import Select from '../components/Select';
 const SignUp = () => {
     const url = 'http://localhost/api/';
     const [name, setName] = useState("");

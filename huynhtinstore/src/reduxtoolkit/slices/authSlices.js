@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Notification from "../../components/Notification";
 
 export const login = createAsyncThunk('login', async (data) => {
     const response = await fetch('http://localhost/api/login', {
