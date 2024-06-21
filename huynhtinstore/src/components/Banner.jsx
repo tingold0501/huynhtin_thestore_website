@@ -17,7 +17,7 @@ const Banner = () => {
                     <p className='text-[91px]'>ULTIMATE</p>
                     <p className='text-[120px] stroke'>SALE</p>
                     <p>NEW COLLECTION</p>
-                    <button className='w-[207px] h-[56px] rounded-xl mt-4 mb-4 bg-black text-white' type="button">SHOP NOW</button>
+                    <button className='hover:bg-white hover:text-black border border-gray-500 w-[207px] h-[56px] rounded-xl mt-4 mb-4 bg-black text-white' type="button">SHOP NOW</button>
                 </div>
                 <div className='h-[150px] flex items-end'>
                     <img className='w-full h-full' src={image3} alt="" srcset="" />
@@ -25,7 +25,6 @@ const Banner = () => {
             </div>
             <div className=' w-[392px] rounded-2xl h-full flex justify-center items-end bg-[#E0E0E0]'>
                 <img className='' src={image2} alt="" srcset="" />
-
             </div>
         </div>
     );
