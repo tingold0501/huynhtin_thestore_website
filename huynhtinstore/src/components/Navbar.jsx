@@ -15,16 +15,14 @@ const Navbar = () => {
         window.location.reload();
     }
 
-    const slides = [
-        ImageCarousel,
-        ImageCarousel,
-        ImageCarousel,
-    ]
+   
     return (
         <div className='w-[70%] relative'>
             <Header/>
             <Banner/>
-            <Brand/>
+            <Brand>
+            
+            </Brand>
             <ButtonFixed />
         </div>
     );
