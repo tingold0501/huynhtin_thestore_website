@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-
-import ImageCarousel from '../assets/images/imagecarousel.png';
-import AdjustIcon from '@mui/icons-material/Adjust';
 import CarouselSwiper from './CarouselSwiper';
-import { SwiperSlide } from 'swiper/react';
-import slide_image_1 from '../assets/images/imagecarousel.png';
 
 const Carousel = ({ children: slides }) => {
     

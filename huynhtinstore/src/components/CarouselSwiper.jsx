@@ -57,10 +57,10 @@ const CarouselSwiper = () => {
 
                 <div className="slider-controler">
                     <div className="swiper-button-prev ">
-                        <NavigateNextIcon name="arrow-back-outline"></NavigateNextIcon>
+                        {/* <NavigateNextIcon name="arrow-back-outline"></NavigateNextIcon> */}
                     </div>
                     <div className="swiper-button-next ">
-                        <NavigateNextIcon name="arrow-forward-outline"></NavigateNextIcon>
+                        {/* <NavigateNextIcon name="arrow-forward-outline"></NavigateNextIcon> */}
                     </div>
                     <div className="swiper-pagination"></div>
                 </div>
