@@ -46,7 +46,7 @@
 
 .swiper-slide {
   width: auto;
-  height: auto;
+  height: auto; 
   /* position: relative; */
 }
 
@@ -56,7 +56,7 @@
   width: auto;
   height: auto;
   border-radius: 2rem;
-  object-fit: cover;
+  /* object-fit: cover; */
 } 
 
 
