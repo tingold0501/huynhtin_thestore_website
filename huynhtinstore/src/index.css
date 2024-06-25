@@ -45,16 +45,16 @@
 } */
 
 .swiper-slide {
-  width: auto;
-  height: auto; 
+  /* width: auto; */
+  /* height: auto;  */
   /* position: relative; */
 }
 
 
 
 .swiper-slide img {
-  width: auto;
-  height: auto;
+  /* width: auto; */
+  /* height: auto; */
   border-radius: 2rem;
   /* object-fit: cover; */
 } 
